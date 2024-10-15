@@ -1,0 +1,182 @@
+[{
+  "type": "error",
+  "name": "AddressEmptyCode",
+  "inputs": [{
+    "type": "address",
+    "name": "target"
+  }]
+}, {
+  "type": "error",
+  "name": "AddressInsufficientBalance",
+  "inputs": [{
+    "type": "address",
+    "name": "account"
+  }]
+}, {
+  "type": "error",
+  "name": "FailedInnerCall",
+  "inputs": []
+}, {
+  "type": "error",
+  "name": "SafeERC20FailedOperation",
+  "inputs": [{
+    "type": "address",
+    "name": "token"
+  }]
+}, {
+  "type": "event",
+  "anonymous": false,
+  "name": "Initialized",
+  "inputs": [{
+    "type": "uint8",
+    "name": "version",
+    "indexed": false
+  }]
+}, {
+  "type": "event",
+  "anonymous": false,
+  "name": "OwnershipTransferStarted",
+  "inputs": [{
+    "type": "address",
+    "name": "previousOwner",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "newOwner",
+    "indexed": true
+  }]
+}, {
+  "type": "event",
+  "anonymous": false,
+  "name": "OwnershipTransferred",
+  "inputs": [{
+    "type": "address",
+    "name": "previousOwner",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "newOwner",
+    "indexed": true
+  }]
+}, {
+  "type": "event",
+  "anonymous": false,
+  "name": "Trade",
+  "inputs": [{
+    "type": "address",
+    "name": "from",
+    "indexed": true
+  }, {
+    "type": "address",
+    "name": "to",
+    "indexed": true
+  }, {
+    "type": "uint256",
+    "name": "amount",
+    "indexed": true
+  }, {
+    "type": "uint256",
+    "name": "uid",
+    "indexed": false
+  }, {
+    "type": "string",
+    "name": "orderId",
+    "indexed": false
+  }]
+}, {
+  "type": "function",
+  "name": "acceptOwnership",
+  "constant": false,
+  "payable": false,
+  "inputs": [],
+  "outputs": []
+}, {
+  "type": "function",
+  "name": "initialize",
+  "constant": false,
+  "payable": false,
+  "inputs": [{
+    "type": "address",
+    "name": "addr"
+  }],
+  "outputs": []
+}, {
+  "type": "function",
+  "name": "owner",
+  "constant": true,
+  "stateMutability": "view",
+  "payable": false,
+  "inputs": [],
+  "outputs": [{
+    "type": "address"
+  }]
+}, {
+  "type": "function",
+  "name": "pendingOwner",
+  "constant": true,
+  "stateMutability": "view",
+  "payable": false,
+  "inputs": [],
+  "outputs": [{
+    "type": "address"
+  }]
+}, {
+  "type": "function",
+  "name": "renounceOwnership",
+  "constant": false,
+  "payable": false,
+  "inputs": [],
+  "outputs": []
+}, {
+  "type": "function",
+  "name": "trade",
+  "constant": false,
+  "payable": false,
+  "inputs": [{
+    "type": "address",
+    "name": "to"
+  }, {
+    "type": "uint256",
+    "name": "amount"
+  }, {
+    "type": "uint256",
+    "name": "uid"
+  }, {
+    "type": "string",
+    "name": "orderId"
+  }],
+  "outputs": []
+}, {
+  "type": "function",
+  "name": "transferOwnership",
+  "constant": false,
+  "payable": false,
+  "inputs": [{
+    "type": "address",
+    "name": "newOwner"
+  }],
+  "outputs": []
+}, {
+  "type": "function",
+  "name": "usdt",
+  "constant": true,
+  "stateMutability": "view",
+  "payable": false,
+  "inputs": [],
+  "outputs": [{
+    "type": "address"
+  }]
+}, {
+  "type": "function",
+  "name": "withdraw",
+  "constant": false,
+  "payable": false,
+  "inputs": [{
+    "type": "address",
+    "name": "token"
+  }, {
+    "type": "address",
+    "name": "to"
+  }],
+  "outputs": []
+}]

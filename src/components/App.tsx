@@ -2,12 +2,16 @@
 import LogoYeeha from '@/assets/logo_yeeha.svg'
 import { useEffect, useState } from 'react'
 import { Env, tgMpc } from '@yeeha/tg_mpc'
+//@ts-ignore
+import Web3 from '@/utils/web3'
 let TgWallet: any = null
 function App() {
   const [address, setAddress] = useState('')
   const [userinfo, setUserinfo] = useState(null)
   const [balance, setBalance] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+
+  const [web3, setWeb3] = useState(false)
 
 
   interface MpcOptionsType {
@@ -26,10 +30,37 @@ function App() {
       const userinfo = TgWallet.getUserInfo()
       console.log('address', address)
       console.log('userinfo', userinfo)
+      const wallet = new Web3(window.mpc);
+      setWeb3(wallet)
       setAddress(address)
       setLoading(false)
 
     }
+  }
+
+  const signIn = async()=>{
+      const uid = "1211321231";
+    // @ts-ignore
+      await web3.signIn(uid);
+  }
+
+  const isSigned = async()=>{
+      // @ts-ignore
+      const signed = await web3.isSigned();
+      console.log('isSigned', signed)
+  }
+
+  const trading = async()=>{
+    //uid
+    const uid = "1211321231";
+    //接受usdt的地址
+    const to = "0x43AB542Bcc9918662898B51384E400987a8071B7";
+    //转账usdt的数量
+    const amount = "1";
+    //订单id
+    const orderId = "23244233252";
+    // @ts-ignore
+    await web3.trading(to, amount, uid, orderId);
   }
 
   const getBalance = async () => {
@@ -93,16 +124,31 @@ function App() {
       <p className="pt-[31px] text-[18px] font-[700] leading-[25px] text-white">
         Welcome to Yeeha Wallet SDK
       </p>
-      <div className='mt-[30px] w-[50%] max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={() => { initTgWalletClick() }}>Init Yeeha Wallet SDK</div>
+      <div className='mt-[30px] w-[50%] max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={() => {
+        initTgWalletClick()
+      }}>Init Yeeha Wallet SDK
+      </div>
 
-       <div className='text-white mt-[30px] flex'>
-      Wallet Address:    {loading && !address ? <LoadingIcon /> :address}
-     </div>
-
-
-      <div className='mt-[30px] w-[50%]  max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={getBalance} > Get Balance</div>
+      <div className='text-white mt-[30px] flex'>
+        Wallet Address: {loading && !address ? <LoadingIcon /> : address}
+      </div>
+      <div className='mt-[30px] w-[50%]  max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer'
+           onClick={getBalance}> Get Balance
+      </div>
       <div className='text-white mt-[30px] flex flex-row'>
-      Balance: { balance}
+        Balance: {balance}
+      </div>
+      <div className='mt-[30px] w-[50%] max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={() => {
+        isSigned()
+      }}>是否已签到
+      </div>
+      <div className='mt-[30px] w-[50%] max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={() => {
+        signIn()
+      }}>签到
+      </div>
+      <div className='mt-[30px] w-[50%] max-w-[200px] bg-[#FFFFFF] p-[10px] rounded-md cursor-pointer' onClick={() => {
+        trading()
+      }}>交易
       </div>
     </div>
   )
